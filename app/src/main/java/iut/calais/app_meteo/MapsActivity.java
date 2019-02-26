@@ -1,5 +1,6 @@
 package iut.calais.app_meteo;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -42,5 +43,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(51, 2);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+               double latitude = latLng.latitude;
+               double longitude = latLng.longitude;
+
+                Intent meteoActivity = new Intent(MapsActivity.this, meteo.class);
+                meteoActivity.putExtra("latitude",latitude);
+                meteoActivity.putExtra("longitude",longitude);
+                startActivity(meteoActivity);
+
+            }
+        });
     }
+
+
 }
