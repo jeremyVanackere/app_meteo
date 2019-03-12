@@ -1,11 +1,11 @@
 package iut.calais.app_meteo.bean;
 
 public class Main {
-    private float temp;
-    private float pressure;
-    private float humidity;
-    private float temp_min;
-    private float temp_max;
+    float temp;
+    float pressure;
+    float humidity;
+    float temp_min;
+    float temp_max;
 
     public float getTemp() {
         return temp;
