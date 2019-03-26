@@ -5,7 +5,7 @@
     tools:context=".meteo">
 
     <item
-        android:id="@+id/changeVille"
+        android:id="@+id/fav"
         android:title="@string/favorites"
         android:orderInCategory="100"
         app:showAsAction="always">

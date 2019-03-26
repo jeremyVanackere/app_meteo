@@ -1,5 +1,6 @@
 package iut.calais.app_meteo;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -181,7 +182,9 @@ public class meteo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
 
-        if(id==R.id.changeVille){
+        if(id==R.id.fav){
+            Intent favo = new Intent(meteo.this,favorite.class);
+            startActivity(favo);
         }
         return super.onOptionsItemSelected(item);
     }
