@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
@@ -33,6 +35,8 @@ import java.text.DateFormat;
 import iut.calais.app_meteo.bean.Coordonnee;
 import iut.calais.app_meteo.bean.Main;
 import iut.calais.app_meteo.bean.Rep;
+import iut.calais.app_meteo.beans.Favoris;
+import iut.calais.app_meteo.sqlite.MeteoFavorisService;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -57,12 +61,17 @@ public class meteo extends AppCompatActivity {
     public String fond="";
     private TextView jours;
     private TabHost tabHost;
+    private FloatingActionButton BtnFav;
+
+    private Favoris fav;
+    private MeteoFavorisService meteoFavorisService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meteo);
 
+        BtnFav = findViewById(R.id.floatingActionButton);
         imgIcon=(ImageView) findViewById(R.id.imgIcon);
         cloud=(TextView) findViewById(R.id.textCloud);
         cityName=(TextView) findViewById(R.id.textVille);
@@ -95,6 +104,8 @@ public class meteo extends AppCompatActivity {
         spec.setIndicator("merc");
         tabHost.addTab(spec);
 
+        meteoFavorisService = new MeteoFavorisService(this);
+        meteoFavorisService.open();
 
         double latitude = this.getIntent().getDoubleExtra("latitude",0);
         double longitude = this.getIntent().getDoubleExtra("longitude",0);
@@ -128,6 +139,11 @@ public class meteo extends AppCompatActivity {
                 String sunr= "sunrise :"+"\n"+sunriseDate;
                 String suns= "sunsete :"+"\n"+sunseteDate;
                 String icon=data.getIcon();
+
+                // On crée un favori au cas ou on l'ajoute au favori
+                fav = new Favoris((long)0,""+latitude,""+longitude,vill);
+
+                // On affiche
                 AfficherTexte(temp, tempe);
                 AfficherTexte(cityName, vill);
                 AfficherTexte(pressure, press);
@@ -142,6 +158,19 @@ public class meteo extends AppCompatActivity {
                 //AfficherTexte(imgIcon, icon)
 
                 AfficherImage(relMeteo, fond);
+
+            }
+        });
+
+        BtnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(BtnFav.getImageAlpha() != R.drawable.etoile_pleine) {
+                    BtnFav.setImageResource(R.drawable.etoile_pleine);
+                    meteoFavorisService.insert(fav);
+                }else{
+                    BtnFav.setImageResource(R.drawable.etoile_vide);
+                }
 
             }
         });
