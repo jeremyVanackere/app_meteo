@@ -11,6 +11,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Set;
+
+import iut.calais.app_meteo.beans.Favoris;
+import iut.calais.app_meteo.sqlite.MeteoFavorisService;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -23,6 +28,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        MeteoFavorisService meteoFavorisService = new MeteoFavorisService(this);
+        meteoFavorisService.open();
+        Favoris f = new Favoris("L","l","Label");
+        Favoris f1 = new Favoris("L2","l2","Label2");
+        Favoris f2 = new Favoris("L3","l3","Label3");
+        long insert = meteoFavorisService.insert(f);
+        f.setId(insert);
+        long insert1 = meteoFavorisService.insert(f1);
+        f1.setId(insert1);
+        long insert2 = meteoFavorisService.insert(f2);
+        f2.setId(insert2);
+        Set<Favoris> all = meteoFavorisService.findAll();
+        long delete = meteoFavorisService.delete(f.getId());
+        Set<Favoris> allAfterDelete = meteoFavorisService.findAll();
+        long update = meteoFavorisService.update(f1.getId(),f2);
+        Set<Favoris> all2 = meteoFavorisService.findAll();
+
+        meteoFavorisService.close();
     }
 
 
