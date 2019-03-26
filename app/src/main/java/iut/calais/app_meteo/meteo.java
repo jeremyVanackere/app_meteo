@@ -14,6 +14,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -134,81 +135,17 @@ public class meteo extends AppCompatActivity {
                 AfficherTexte(wind, wi);
                 AfficherTexte(sunrise, sunr);
                 AfficherTexte(sunset, suns);
-                new LoadImage(imgIcon).execute(imageURL+icon+".png");
+                //new LoadImage(imgIcon).execute(imageURL+icon+".png")
+                AfficherIcon(imgIcon,icon);
                 fond=fond+data.getDescription();
                 //AfficherTexte(imgIcon, icon)
 
-                AfficherImage(relMeteo, fond);
+               // AfficherImage(relMeteo, fond);
 
             }
         });
 
     }
-
-    //descargar imagen
-
-    class LoadImage extends AsyncTask<String, Void, Bitmap> {
-
-        private final WeakReference<ImageView> imageViewReference;
-
-        public LoadImage(ImageView imageView) {
-            imageViewReference = new WeakReference<ImageView>(imageView);
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            try {
-                return downloadBitmap(params[0]);
-            } catch (Exception e) {
-                Log.e("LoadImage class", "doInBackground() " + e.getMessage());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (isCancelled()) {
-                bitmap = null;
-            }
-
-            if (imageViewReference != null) {
-                ImageView imageView = imageViewReference.get();
-                if (imageView != null) {
-                    if (bitmap != null) {
-                        imageView.setImageBitmap(bitmap);
-                    }
-                }
-            }
-        }
-
-        private Bitmap downloadBitmap(String url) {
-            HttpURLConnection urlConnection = null;
-            try {
-                URL uri = new URL(url);
-                urlConnection = (HttpURLConnection) uri.openConnection();
-                int statusCode = urlConnection.getResponseCode();
-                if (statusCode != HttpURLConnection.HTTP_OK) {
-                    return null;
-                }
-
-                InputStream inputStream = urlConnection.getInputStream();
-                if (inputStream != null) {
-                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                    return bitmap;
-                }
-            } catch (Exception e) {
-                urlConnection.disconnect();
-                Log.e("LoadImage class", "Descargando imagen desde url: " + url);
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-            return null;
-        }
-    }
-//hasta aqui la descarga
-
 
 
     public void AfficherTexte(TextView textView, String texte)
@@ -224,6 +161,12 @@ public class meteo extends AppCompatActivity {
         }else{
             meteo.this.runOnUiThread(() -> relativeLayout.setBackgroundResource(R.drawable.nublado));
         }
+    }
+
+    public void AfficherIcon(ImageView img, String icon){
+
+        meteo.this.runOnUiThread(() ->Picasso.get().load("http://openweathermap.org/drawable.img/w/"+icon+".png").into(img));
+
     }
 
 
