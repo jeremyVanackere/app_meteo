@@ -5,6 +5,8 @@ public class Rep {
     Weather[] weather;
     Main main;
     String name;
+    Wind wind;
+    Sys sys;
 
     public Coordonnee getCoord() {
         return coord;
@@ -36,5 +38,21 @@ public class Rep {
 
     public void setWeather(Weather[] weather) {
         this.weather = weather;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    public Sys getSys() {
+        return sys;
+    }
+
+    public void setSys(Sys sys) {
+        this.sys = sys;
     }
 }
