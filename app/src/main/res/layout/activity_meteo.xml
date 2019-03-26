@@ -119,6 +119,15 @@
                     android:layout_marginTop="20dp"
                     android:text="sunsete"
                     android:textSize="20dp"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="65dp"
+                    android:layout_height="56dp"
+                    android:clickable="true"
+                    android:backgroundTint="@color/colorPrimary"
+                    app:srcCompat="@drawable/etoile_vide" />
             </RelativeLayout>
 
             <TabHost
