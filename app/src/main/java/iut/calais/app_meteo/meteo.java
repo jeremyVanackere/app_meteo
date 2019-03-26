@@ -140,7 +140,7 @@ public class meteo extends AppCompatActivity {
                 fond=fond+data.getDescription();
                 //AfficherTexte(imgIcon, icon)
 
-               // AfficherImage(relMeteo, fond);
+                AfficherImage(relMeteo, fond);
 
             }
         });
@@ -164,8 +164,8 @@ public class meteo extends AppCompatActivity {
     }
 
     public void AfficherIcon(ImageView img, String icon){
-
-        meteo.this.runOnUiThread(() ->Picasso.get().load("http://openweathermap.org/drawable.img/w/"+icon+".png").into(img));
+        String url = "http://openweathermap.org/img/w/"+icon+".png";
+        meteo.this.runOnUiThread(() ->Picasso.get().load(url).into(img));
 
     }
 
