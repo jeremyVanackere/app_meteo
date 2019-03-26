@@ -63,13 +63,16 @@ public class meteo extends AppCompatActivity {
     private TabHost tabHost;
     private FloatingActionButton BtnFav;
 
-    private Favoris fav;
+    private Favoris fav, favori; // favoris contien l'information du favori s'il existe deja
     private MeteoFavorisService meteoFavorisService;
+    private boolean boolFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meteo);
+
+        boolFav = false;
 
         BtnFav = findViewById(R.id.floatingActionButton);
         imgIcon=(ImageView) findViewById(R.id.imgIcon);
@@ -105,7 +108,6 @@ public class meteo extends AppCompatActivity {
         tabHost.addTab(spec);
 
         meteoFavorisService = new MeteoFavorisService(this);
-        meteoFavorisService.open();
 
         double latitude = this.getIntent().getDoubleExtra("latitude",0);
         double longitude = this.getIntent().getDoubleExtra("longitude",0);
@@ -159,18 +161,34 @@ public class meteo extends AppCompatActivity {
 
                 AfficherImage(relMeteo, fond);
 
+                // Gestion étioile favori
+                TextView ville = findViewById(R.id.textVille);
+                meteoFavorisService.open();
+                favori = meteoFavorisService.GetByLibelle(vill);
+                meteoFavorisService.close();
+                if(favori != null)
+                {
+                    BtnFav.setImageResource(R.drawable.etoile_pleine);
+                    boolFav = true;
+                }
+
             }
         });
 
         BtnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(BtnFav.getImageAlpha() != R.drawable.etoile_pleine) {
+                meteoFavorisService.open();
+                if(!boolFav) {
                     BtnFav.setImageResource(R.drawable.etoile_pleine);
                     meteoFavorisService.insert(fav);
+                    boolFav = true;
                 }else{
                     BtnFav.setImageResource(R.drawable.etoile_vide);
+                    Long t =  meteoFavorisService.delete(favori.getId());
+                    boolFav = false;
                 }
+                meteoFavorisService.close();
 
             }
         });

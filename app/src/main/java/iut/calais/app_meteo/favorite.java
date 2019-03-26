@@ -2,6 +2,8 @@ package iut.calais.app_meteo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Set;
@@ -11,7 +13,7 @@ import iut.calais.app_meteo.sqlite.MeteoFavorisService;
 
 public class favorite extends AppCompatActivity {
 
-    private TextView favo;
+    private LinearLayout favo;
     private MeteoFavorisService meteoFavorisService;
     private Set<Favoris> all;
 
@@ -28,7 +30,11 @@ public class favorite extends AppCompatActivity {
 
         all = meteoFavorisService.findAll();
 
-
+        for (Favoris favoris : all) {
+            Button button = new Button(this);
+            button.setText(favoris.getLibelle());
+            favo.addView(button);
+        }
 
 
     }

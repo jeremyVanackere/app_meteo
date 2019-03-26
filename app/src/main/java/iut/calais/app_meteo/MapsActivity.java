@@ -30,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
-        MeteoFavorisService meteoFavorisService = new MeteoFavorisService(this);
+        /*MeteoFavorisService meteoFavorisService = new MeteoFavorisService(this);
         meteoFavorisService.open();
         Favoris f = new Favoris("L","l","Label");
         Favoris f1 = new Favoris("L2","l2","Label2");
@@ -47,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long update = meteoFavorisService.update(f1.getId(),f2);
         Set<Favoris> all2 = meteoFavorisService.findAll();
 
-        meteoFavorisService.close();
+        meteoFavorisService.close();*/
     }
 
 

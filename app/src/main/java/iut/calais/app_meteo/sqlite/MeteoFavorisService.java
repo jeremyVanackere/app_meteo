@@ -89,6 +89,21 @@ public class MeteoFavorisService {
         return bdd.delete(MeteoSQLite.TABLE_FAVORIS, COL_ID + " = ?", new String[] {id.toString()});
     }
 
+    public Favoris GetByLibelle(String nomVille)
+    {
+        Favoris fav = null;
+        final Cursor c = bdd.query(MeteoSQLite.TABLE_FAVORIS, new String[]{COL_ID, COL_LATITUDE, COL_LONGITUDE, COL_LIBELLE}, MeteoSQLite.COL_LIBELLE+"=?", new String[] { nomVille }, null, null, null);
+        try {
+            while (c.moveToNext()) {
+
+                fav = new Favoris(c.getLong(c.getColumnIndex(COL_ID)), c.getString(c.getColumnIndex(COL_LATITUDE)), c.getString(c.getColumnIndex(COL_LONGITUDE)), c.getString(c.getColumnIndex(COL_LIBELLE)));
+            }
+        } finally {
+            c.close();
+        }
+        return fav;
+    }
+
 
     /**
      * Retourne tous les résultats
