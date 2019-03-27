@@ -111,7 +111,6 @@ public class meteo extends AppCompatActivity {
 
         double latitude = this.getIntent().getDoubleExtra("latitude",0);
         double longitude = this.getIntent().getDoubleExtra("longitude",0);
-        //textLat.setText("latitude : "+latitude+" / longitude :  "+longitude);
         RecupMeteo recupMeteo = new RecupMeteo(latitude,longitude);
         Data data = new Data();
 
@@ -162,7 +161,6 @@ public class meteo extends AppCompatActivity {
                 AfficherImage(relMeteo, fond);
 
                 // Gestion étioile favori
-                TextView ville = findViewById(R.id.textVille);
                 meteoFavorisService.open();
                 favori = meteoFavorisService.GetByLibelle(vill);
                 meteoFavorisService.close();
