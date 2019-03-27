@@ -168,7 +168,8 @@ public class meteo extends AppCompatActivity {
                 meteoFavorisService.close();
                 if(favori != null)
                 {
-                    BtnFav.setImageResource(R.drawable.etoile_pleine);
+                    AfficherImg(BtnFav,R.drawable.etoile_pleine);
+                   // BtnFav.setImageResource(R.drawable.etoile_pleine);
                     boolFav = true;
                 }
 
@@ -201,6 +202,12 @@ public class meteo extends AppCompatActivity {
         meteo.this.runOnUiThread(() -> textView.setText(texte));
 
     }
+
+    public void AfficherImg(ImageView img,int ressource)
+    {
+            meteo.this.runOnUiThread(() ->  img.setImageResource(ressource));
+    }
+
 
     public void AfficherImage(RelativeLayout relativeLayout, String texte)
     {
