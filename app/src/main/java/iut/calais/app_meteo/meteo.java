@@ -46,6 +46,8 @@ import okhttp3.Response;
 public class meteo extends AppCompatActivity {
     public String imageURL = "http://openweathermap.org/drawable.img/w/";
 
+    private double latitude;
+    private double longitude;
 
     private ImageView imgIcon;
     private TextView cloud;
@@ -109,8 +111,8 @@ public class meteo extends AppCompatActivity {
 
         meteoFavorisService = new MeteoFavorisService(this);
 
-        double latitude = this.getIntent().getDoubleExtra("latitude",0);
-        double longitude = this.getIntent().getDoubleExtra("longitude",0);
+        latitude = this.getIntent().getDoubleExtra("latitude",0);
+        longitude = this.getIntent().getDoubleExtra("longitude",0);
         RecupMeteo recupMeteo = new RecupMeteo(latitude,longitude);
         Data data = new Data();
 
@@ -215,9 +217,6 @@ public class meteo extends AppCompatActivity {
 
     }
 
-
-
-
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -232,5 +231,12 @@ public class meteo extends AppCompatActivity {
             startActivity(favo);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() { // quand on appuie sur le bouton arriere
+        // your code.
+        Intent meteoActivity = new Intent(this,MapsActivity.class);  // on Crée un Intent pour revenir sur l'activité Map
+        this.startActivity(meteoActivity);
     }
 }

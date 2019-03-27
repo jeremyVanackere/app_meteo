@@ -1,5 +1,6 @@
 package iut.calais.app_meteo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,17 +47,12 @@ public class favorite extends AppCompatActivity {
             pass++;
         }
 
+    }
 
-
-        View.OnClickListener myhandler ;
-        myhandler = new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            }
-
-        };
-
+    @Override
+    public void onBackPressed() { // quand on appuie sur le bouton arriere
+        // your code.
+        Intent meteoActivity = new Intent(this,MapsActivity.class);  // on Crée un Intent pour revenir sur l'activité Map
+        this.startActivity(meteoActivity);
     }
 }
