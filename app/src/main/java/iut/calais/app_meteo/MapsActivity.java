@@ -3,6 +3,8 @@ package iut.calais.app_meteo;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -84,5 +86,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+
+        if(id==R.id.fav){
+            Intent favo = new Intent(MapsActivity.this,favorite.class);
+            startActivity(favo);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
