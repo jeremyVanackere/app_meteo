@@ -56,13 +56,9 @@ public class meteo extends AppCompatActivity {
     private TextView humidity;
     private TextView pressure;
     private TextView wind;
-    private TextView sunrise;
-    private TextView sunset;
     public  String message = "";
     private RelativeLayout relMeteo;
     public String fond="";
-    private TextView jours;
-    private TabHost tabHost;
     private FloatingActionButton BtnFav;
 
     private Favoris fav, favori; // favoris contien l'information du favori s'il existe deja
@@ -84,9 +80,6 @@ public class meteo extends AppCompatActivity {
         humidity=(TextView) findViewById(R.id.textHumidity);
         pressure = (TextView) findViewById(R.id.textPressure);
         wind = (TextView) findViewById(R.id.textWind);
-        sunrise = (TextView) findViewById(R.id.textSunrise);
-        sunset = (TextView) findViewById(R.id.textSunset);
-        jours = (TextView) findViewById(R.id.textJours);
         relMeteo = (RelativeLayout) findViewById(R.id.relativeMeteo);
 
         meteoFavorisService = new MeteoFavorisService(this);
@@ -119,8 +112,6 @@ public class meteo extends AppCompatActivity {
                 String hum="humidite :"+"\n"+data.getHumidite();
                 String des= "desc :"+"\n"+data.getTemps()+"("+data.getDescription()+")";
                 String wi= "wind : "+"\n"+data.getSpeed()+"mps";
-                String sunr= "sunrise :"+"\n"+sunriseDate;
-                String suns= "sunsete :"+"\n"+sunseteDate;
                 String icon=data.getIcon();
 
                 // On crée un favori au cas ou on l'ajoute au favori
@@ -133,8 +124,6 @@ public class meteo extends AppCompatActivity {
                 AfficherTexte(humidity, hum);
                 AfficherTexte(cloud, des);
                 AfficherTexte(wind, wi);
-                AfficherTexte(sunrise, sunr);
-                AfficherTexte(sunset, suns);
                 //new LoadImage(imgIcon).execute(imageURL+icon+".png")
                 AfficherIcon(imgIcon,icon);
                 fond=fond+data.getDescription();

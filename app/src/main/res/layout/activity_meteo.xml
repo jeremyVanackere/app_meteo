@@ -53,22 +53,12 @@
                     android:layout_marginTop="1dp"
                     android:textColor="@color/blanc" />
 
-                <TextView
-                    android:id="@+id/textJours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/imgIcon"
-                    android:layout_marginLeft="110dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Jours"
-                    android:textColor="@color/blanc"
-                    android:textSize="30dp" />
 
 
                 <TextView
                     android:id="@+id/textWind"
-                    android:layout_below="@id/textJours"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/imgIcon"
+                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="50dp"
                     android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
@@ -78,8 +68,8 @@
 
                 <TextView
                     android:id="@+id/textCloud"
-                    android:layout_below="@id/textJours"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/imgIcon"
+                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="200dp"
                     android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
@@ -110,27 +100,6 @@
                     android:text="humidity"
                     android:textSize="20dp"/>
 
-                <TextView
-                    android:id="@+id/textSunrise"
-                    android:layout_below="@id/textHumidity"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="50dp"
-                    android:textColor="@color/blanc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="sunrise"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/textSunset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blanc"
-                    android:layout_below="@id/textHumidity"
-                    android:layout_marginLeft="200dp"
-                    android:layout_marginTop="20dp"
-                    android:text="sunsete"
-                    android:textSize="20dp"/>
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/floatingActionButton"
