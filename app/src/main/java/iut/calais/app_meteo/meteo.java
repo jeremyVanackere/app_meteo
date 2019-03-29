@@ -88,26 +88,6 @@ public class meteo extends AppCompatActivity {
         sunset = (TextView) findViewById(R.id.textSunset);
         jours = (TextView) findViewById(R.id.textJours);
         relMeteo = (RelativeLayout) findViewById(R.id.relativeMeteo);
-        tabHost = (TabHost) findViewById(R.id.tabshost);
-        tabHost.setup();
-
-        //pestaña uno
-        TabHost.TabSpec spec = tabHost.newTabSpec("lun");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("lun");
-        tabHost.addTab(spec);
-
-        //pestaña dos
-        spec = tabHost.newTabSpec("mart");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("mart");
-        tabHost.addTab(spec);
-
-        //vue trois
-        spec = tabHost.newTabSpec("merc");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("merc");
-        tabHost.addTab(spec);
 
         meteoFavorisService = new MeteoFavorisService(this);
 
@@ -160,7 +140,7 @@ public class meteo extends AppCompatActivity {
                 fond=fond+data.getDescription();
                 //AfficherTexte(imgIcon, icon)
 
-                AfficherImage(relMeteo, fond);
+               // AfficherImage(relMeteo, fond);
 
                 // Gestion étioile favori
                 meteoFavorisService.open();
@@ -173,26 +153,31 @@ public class meteo extends AppCompatActivity {
                     boolFav = true;
                 }
 
+                BtnFav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        meteoFavorisService.open();
+                        if(!boolFav) {
+                            BtnFav.setImageResource(R.drawable.etoile_pleine);
+                            meteoFavorisService.insert(fav);
+                            favori = meteoFavorisService.GetByLibelle(vill);
+                            boolFav = true;
+                        }else{
+                            if(favori != null) {
+                                BtnFav.setImageResource(R.drawable.etoile_vide);
+                                Long t = meteoFavorisService.delete(favori.getId());
+                                boolFav = false;
+                            }
+                        }
+                        meteoFavorisService.close();
+
+                    }
+                });
+
             }
         });
 
-        BtnFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                meteoFavorisService.open();
-                if(!boolFav) {
-                    BtnFav.setImageResource(R.drawable.etoile_pleine);
-                    meteoFavorisService.insert(fav);
-                    boolFav = true;
-                }else{
-                    BtnFav.setImageResource(R.drawable.etoile_vide);
-                    Long t =  meteoFavorisService.delete(favori.getId());
-                    boolFav = false;
-                }
-                meteoFavorisService.close();
 
-            }
-        });
 
     }
 

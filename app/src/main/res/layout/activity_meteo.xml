@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".meteo"
-    android:id="@+id/relativeMeteo">
+    android:id="@+id/relativeMeteo"
+    android:background="@color/fond">
 
 
     <ScrollView
@@ -28,6 +29,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/blanc"
                     android:text="Ville"
                     android:textSize="30dp"/>
 
@@ -38,25 +40,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="250dp"
+                    android:textColor="@color/blanc"
                     android:textSize="25dp"
                     android:text="12 deg" />
 
                 <ImageView
                     android:id="@+id/imgIcon"
-                    android:layout_width="138dp"
-                    android:layout_height="113dp"
+                    android:layout_width="178dp"
+                    android:layout_height="166dp"
                     android:layout_below="@id/textVille"
                     android:layout_marginLeft="80dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/blanc" />
+
                 <TextView
                     android:id="@+id/textJours"
-                    android:layout_below="@+id/imgIcon"
-                    android:layout_marginLeft="110dp"
-                    android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgIcon"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="5dp"
                     android:text="Jours"
-                    android:textSize="30dp"/>
+                    android:textColor="@color/blanc"
+                    android:textSize="30dp" />
 
 
                 <TextView
@@ -64,6 +70,7 @@
                     android:layout_below="@id/textJours"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="50dp"
+                    android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="wind"
@@ -74,6 +81,7 @@
                     android:layout_below="@id/textJours"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="200dp"
+                    android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="cloud"
@@ -84,6 +92,7 @@
                     android:layout_below="@id/textCloud"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="50dp"
+                    android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="pressure"
@@ -95,6 +104,7 @@
                     android:layout_below="@id/textCloud"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="200dp"
+                    android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="humidity"
@@ -105,6 +115,7 @@
                     android:layout_below="@id/textHumidity"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="50dp"
+                    android:textColor="@color/blanc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="sunrise"
@@ -114,6 +125,7 @@
                     android:id="@+id/textSunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/blanc"
                     android:layout_below="@id/textHumidity"
                     android:layout_marginLeft="200dp"
                     android:layout_marginTop="20dp"
@@ -122,62 +134,13 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/floatingActionButton"
-                    android:layout_marginTop="20dp"
                     android:layout_width="65dp"
                     android:layout_height="56dp"
-                    android:clickable="true"
+                    android:layout_marginTop="20dp"
                     android:backgroundTint="@color/colorPrimary"
+                    android:clickable="true"
                     app:srcCompat="@drawable/etoile_vide" />
             </RelativeLayout>
-
-            <TabHost
-                android:id="@+id/tabshost"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <FrameLayout
-                        android:id="@android:id/tabcontent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:id="@+id/tab1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tab2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tab3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                        </LinearLayout>
-                    </FrameLayout>
-                </LinearLayout>
-            </TabHost>
-
         </LinearLayout>
     </ScrollView>
 
